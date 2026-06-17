@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kahoot SST - HOST</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;800&family=Poppins:wght@500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <script src="/socket.io/socket.io.js"></script>
+</head>
+<body>
+    <div class="host-container">
+        
+        <!-- PANTALLA DE SALA DE ESPERA -->
+        <div id="lobby-screen" class="glass-panel">
+            <h1 class="title">¡Únete al Juego!</h1>
+            <p>Abre el navegador en tu celular e ingresa a:</p>
+            <div id="pin-display" class="pin-display">Cargando IP...</div>
+            
+            <h2>Jugadores Conectados: <span id="player-count">0</span></h2>
+            <div id="players-grid" class="players-grid">
+                <!-- Jugadores aparecen aquí -->
+            </div>
+            
+            <button id="start-btn" class="action-btn">INICIAR JUEGO</button>
+        </div>
+
+        <!-- PANTALLA DE PREGUNTA -->
+        <div id="question-screen" class="glass-panel hidden">
+            <h2 id="question-text" class="question-text">¿Pregunta?</h2>
+            
+            <div id="timer" class="timer-circle">15</div>
+            
+            <div id="options-grid" class="options-grid-host">
+                <!-- Opciones (Rojo, Azul, Amarillo, Verde) -->
+                <div class="opt-card bg-0" id="opt-0"></div>
+                <div class="opt-card bg-1" id="opt-1"></div>
+                <div class="opt-card bg-2" id="opt-2"></div>
+                <div class="opt-card bg-3" id="opt-3"></div>
+            </div>
+            <p style="margin-top: 1rem; font-weight: bold;">Respuestas recibidas: <span id="answers-received">0</span></p>
+        </div>
+
+        <!-- PANTALLA DE PODIO -->
+        <div id="podium-screen" class="glass-panel hidden">
+            <h1 class="title">🏆 PODIO FINAL 🏆</h1>
+            <div id="podium-container" class="podium">
+                <!-- Podio JS -->
+            </div>
+            <br><br>
+            <button id="restart-btn" class="action-btn">VOLVER A JUGAR</button>
+        </div>
+
+    </div>
+    
+    <script src="host.js"></script>
+</body>
+</html>

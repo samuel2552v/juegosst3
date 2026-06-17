@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Kahoot SST</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;800&family=Poppins:wght@500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <script src="/socket.io/socket.io.js"></script>
+</head>
+<body>
+    <div class="client-container">
+        
+        <!-- PANTALLA LOGIN -->
+        <div id="login-screen" class="login-screen">
+            <h1 class="title" style="font-size:2.5rem;">Desafío SST</h1>
+            <input type="text" id="name-input" class="login-input" placeholder="Tu Nombre" maxlength="15" autocomplete="off">
+            <button id="join-btn" class="client-btn">Entrar</button>
+            <p id="error-msg" style="color:var(--danger-red); font-weight:bold;"></p>
+        </div>
+
+        <!-- PANTALLA ESPERANDO -->
+        <div id="waiting-screen" class="waiting-message hidden">
+            ¡Estás dentro!<br>Mira la pantalla principal.
+        </div>
+
+        <!-- PANTALLA BOTONES RESPUESTA -->
+        <div id="play-screen" class="options-grid-client hidden">
+            <button class="client-opt bg-0" id="btn-0"></button>
+            <button class="client-opt bg-1" id="btn-1"></button>
+            <button class="client-opt bg-2" id="btn-2"></button>
+            <button class="client-opt bg-3" id="btn-3"></button>
+        </div>
+
+        <!-- PANTALLA RESULTADO PREGUNTA -->
+        <div id="result-screen" class="client-result hidden">
+            <div id="result-icon" style="font-size:5rem; margin-bottom:1rem;"></div>
+            <div id="result-text"></div>
+            <div id="score-text" style="margin-top:1rem; font-size:1.5rem;"></div>
+        </div>
+
+    </div>
+
+    <script src="client.js"></script>
+</body>
+</html>
