@@ -112,12 +112,15 @@ function shuffleArray(array) {
 io.on('connection', (socket) => {
     
     // El host se conecta
-    socket.on('register_host', () => {
+    socket.on('register_host', (data) => {
         hostSocketId = socket.id;
-        gameState = 'waiting';
-        for (let p in players) {
-            players[p].score = 0;
-            io.to(p).emit('back_to_lobby');
+        const isLobby = data && data.isLobby;
+        if (isLobby) {
+            gameState = 'waiting';
+            for (let p in players) {
+                players[p].score = 0;
+                io.to(p).emit('back_to_lobby');
+            }
         }
         socket.emit('host_registered', {});
         // Enviar jugadores actuales si el host se reconecta
