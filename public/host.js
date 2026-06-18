@@ -29,8 +29,11 @@ let timerInterval;
 let timeRemaining = 15;
 let isQuestionActive = false;
 
-// Registro como host
-socket.emit('register_host');
+// Registro como host al conectar/reconectar
+socket.on('connect', () => {
+    const isLobby = !lobbyScreen.classList.contains('hidden');
+    socket.emit('register_host', { isLobby });
+});
 
 socket.on('host_registered', () => {
     // window.location.origin obtiene automáticamente el link donde está subido (ej. https://juego-sst.glitch.me)
