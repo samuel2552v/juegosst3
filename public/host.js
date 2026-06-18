@@ -10,6 +10,7 @@ const playerCountSpan = document.getElementById('player-count');
 const playersGrid = document.getElementById('players-grid');
 const startBtn = document.getElementById('start-btn');
 const restartBtn = document.getElementById('restart-btn');
+const abortBtn = document.getElementById('abort-btn');
 
 const questionText = document.getElementById('question-text');
 const timerDisplay = document.getElementById('timer');
@@ -155,3 +156,13 @@ restartBtn.addEventListener('click', () => {
     podiumScreen.classList.add('hidden');
     lobbyScreen.classList.remove('hidden');
 });
+
+if (abortBtn) {
+    abortBtn.addEventListener('click', () => {
+        if (confirm('¿Estás seguro de que deseas reiniciar el juego y volver a la sala de espera? Todos los puntajes se pondrán en cero.')) {
+            socket.emit('reset_game');
+            questionScreen.classList.add('hidden');
+            lobbyScreen.classList.remove('hidden');
+        }
+    });
+}
