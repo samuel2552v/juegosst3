@@ -114,6 +114,11 @@ io.on('connection', (socket) => {
     // El host se conecta
     socket.on('register_host', () => {
         hostSocketId = socket.id;
+        gameState = 'waiting';
+        for (let p in players) {
+            players[p].score = 0;
+            io.to(p).emit('back_to_lobby');
+        }
         socket.emit('host_registered', {});
         // Enviar jugadores actuales si el host se reconecta
         io.to(hostSocketId).emit('update_players', Object.values(players));
