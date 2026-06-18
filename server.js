@@ -263,6 +263,11 @@ io.on('connection', (socket) => {
     socket.on('disconnect', () => {
         if (socket.id === hostSocketId) {
             hostSocketId = null;
+            gameState = 'waiting';
+            for (let p in players) {
+                players[p].score = 0;
+                io.to(p).emit('back_to_lobby');
+            }
         } else if (players[socket.id]) {
             delete players[socket.id];
             if (hostSocketId) {
