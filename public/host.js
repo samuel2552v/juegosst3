@@ -152,6 +152,8 @@ socket.on('show_podium', (ranking) => {
 });
 
 restartBtn.addEventListener('click', () => {
+    clearInterval(timerInterval);
+    isQuestionActive = false;
     socket.emit('reset_game');
     podiumScreen.classList.add('hidden');
     lobbyScreen.classList.remove('hidden');
@@ -160,6 +162,8 @@ restartBtn.addEventListener('click', () => {
 if (abortBtn) {
     abortBtn.addEventListener('click', () => {
         if (confirm('¿Estás seguro de que deseas reiniciar el juego y volver a la sala de espera? Todos los puntajes se pondrán en cero.')) {
+            clearInterval(timerInterval);
+            isQuestionActive = false;
             socket.emit('reset_game');
             questionScreen.classList.add('hidden');
             lobbyScreen.classList.remove('hidden');
